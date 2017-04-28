@@ -62,6 +62,7 @@ import org.eclipse.jetty.util.AttributesMap;
 import org.eclipse.jetty.util.Loader;
 import org.eclipse.jetty.util.MultiException;
 import org.eclipse.jetty.util.URIUtil;
+import org.eclipse.jetty.util.WebAppLoaderFix;
 import org.eclipse.jetty.util.annotation.ManagedAttribute;
 import org.eclipse.jetty.util.annotation.ManagedObject;
 import org.eclipse.jetty.util.component.DumpableCollection;
@@ -566,6 +567,7 @@ public class WebAppContext extends ServletContextHandler implements WebAppClassL
     @Override
     protected void doStop() throws Exception
     {
+        WebAppLoaderFix.checkAndClose(getClassLoader());
         super.doStop();
     }
 
